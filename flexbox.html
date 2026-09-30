@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Flexbox Quest</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+
+            font-family: Arial, sans-serif;
+
+            /* Dark background for the game */
+            background-color: #211610;
+
+            color: white;
+        }
+
+
+            .game-header {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            flex-wrap: wrap;
+
+            gap: 15px;
+
+            padding: 20px;
+            margin: 10px;
+
+            background-color: #35241b;
+
+            border: 2px solid #7a614c;
+
+            border-radius: 12px;
+        }
+
+
+        
+        .game-title {
+            margin: 0;
+
+            font-size: 28px;
+        }
+
+
+        .game-info {
+            display: flex;
+
+            gap: 20px;
+
+            align-items: center;
+
+            
+            flex-wrap: wrap;
+        }
+
+
+        .stat {
+            display: inline-block;
+
+            padding: 8px 12px;
+
+            background-color: #4d3627;
+
+            border: 1px solid #8e6959;
+
+            border-radius: 8px;
+
+            font-size: 14px;
+        }
+
+
+        .header-actions {
+            display: flex;
+
+            gap: 10px;
+        }
+
+
+        
+        button {
+            padding: 10px 16px;
+
+            background-color: #5f3c32;
+
+            color: white;
+
+            border: 2px solid #a3806d;
+
+            border-radius: 8px;
+
+            font-size: 14px;
+
+            cursor: pointer;
+        }
+
+
+        button:hover {
+            background-color: #905c4b;
+        }
+
+
+        
+        main {
+            width: 100%;
+
+            padding: 0 10px;
+        }
+
+
+        .game-area {
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: center;
+
+            gap: 20px;
+
+            min-height: 420px;
+
+            margin: 20px 0;
+
+            padding: 25px;
+
+            background-color: #5e3820;
+
+            border: 2px solid #b37e5d;
+
+            border-radius: 12px;
+        }
+
+
+        
+        .game-message {
+            padding: 10px 18px;
+
+            background-color: #422717;
+
+            border: 1px solid #c48772;
+
+            border-radius: 8px;
+
+            font-size: 15px;
+        }
+
+
+         .top-row {
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            gap: 100px;
+
+            width: 100%;
+        }
+
+
+        
+        .star {
+            display: inline-block;
+
+            padding: 15px 20px;
+
+            background-color: #1c4369;
+
+            border: 2px solid #d2d832;
+
+            border-radius: 10px;
+
+            font-size: 30px;
+        }
+
+
+        
+        .player {
+            display: inline-block;
+
+            padding: 15px 25px;
+
+            background-color: #315b41;
+
+            border: 2px solid #6eb887;
+
+            border-radius: 10px;
+
+            font-size: 18px;
+
+            font-weight: bold;
+        }
+
+
+        
+        .middle-row {
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            width: 100%;
+        }
+
+
+        
+        .platform {
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            width: 220px;
+
+            height: 45px;
+
+            background-color: #754c31;
+
+            border: 2px solid #a6b958;
+
+            border-radius: 8px;
+
+            font-weight: bold;
+        }
+
+
+        .bottom-row {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            gap: 25px;
+
+            width: 75%;
+        }
+
+
+        .game-panels {
+            display: flex;
+
+                flex-direction: row;
+
+            gap: 20px;
+
+            margin: 20px 0;
+        }
+
+
+        .panel {
+            flex: 1;
+
+            padding: 20px;
+
+            background-color: #1b2335;
+
+            border: 2px solid #4c5c7a;
+
+            border-radius: 12px;
+        }
+
+
+        .panel h2 {
+            margin-top: 0;
+
+            text-align: center;
+        }
+
+
+        .controls-content {
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: center;
+
+            gap: 10px;
+        }
+
+
+        .control-row {
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            gap: 10px;
+        }
+
+
+        
+        .control-button {
+            width: 50px;
+
+            height: 45px;
+
+            padding: 5px;
+
+            font-size: 20px;
+        }
+
+
+        /* Jump button */
+
+        .jump-button {
+            padding: 10px 25px;
+        }
+
+
+        .inventory-items {
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            gap: 10px;
+
+            flex-wrap: wrap;
+        }
+
+
+        
+        .item {
+            display: inline-block;
+
+            padding: 15px;
+
+            background-color: #523029;
+
+            border: 2px solid #9f8a60;
+
+            border-radius: 8px;
+
+            font-size: 14px;
+        }
+
+
+        
+        .item:hover {
+            background-color: #723a3a;
+        }
+
+
+        .quest-list {
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 10px;
+        }
+
+
+        .quest-item {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            gap: 10px;
+
+            padding: 12px;
+
+            background-color: #293852;
+
+            border: 1px solid #60779f;
+
+            border-radius: 8px;
+        }
+
+
+        .progress {
+            padding: 5px 8px;
+
+            background-color: #355a43;
+
+            border-radius: 6px;
+
+            font-weight: bold;
+        }
+
+
+        .display-demo {
+            margin-top: 20px;
+
+            padding: 15px;
+
+            background-color: #171e2d;
+
+            border: 1px solid #43516b;
+
+            border-radius: 10px;
+        }
+
+
+        .display-demo h3 {
+            margin-top: 0;
+
+            font-size: 16px;
+        }
+
+
+        .demo-block {
+            display: block;
+
+            padding: 5px;
+
+            margin-bottom: 5px;
+
+            background-color: #394760;
+        }
+
+
+        .demo-inline {
+            display: inline;
+
+            background-color: #604b70;
+        }
+
+
+        .demo-inline-block {
+            display: inline-block;
+
+            padding: 5px;
+
+            background-color: #665126;
+        }
+
+
+        .demo-flex {
+            display: flex;
+
+            gap: 8px;
+
+            margin-top: 8px;
+        }
+
+
+        .demo-flex span {
+            padding: 6px;
+
+            background-color: #315b42;
+        }
+
+
+        footer {
+            padding: 20px;
+
+            margin: 10px;
+
+            text-align: center;
+
+            background-color: #1b2335;
+
+            border: 2px solid #4c5c7a;
+
+            border-radius: 12px;
+
+            font-size: 14px;
+        }
+
+
+        @media (max-width: 768px) {
+
+            /* Stack the header items vertically */
+            .game-header {
+                flex-direction: column;
+
+                justify-content: center;
+
+                text-align: center;
+            }
+
+
+            .game-info {
+                justify-content: center;
+            }
+
+
+            .header-actions {
+                justify-content: center;
+            }
+
+
+            .game-panels {
+                flex-direction: column;
+            }
+
+
+            .top-row {
+                gap: 30px;
+            }
+
+
+            .bottom-row {
+                width: 100%;
+
+                gap: 15px;
+            }
+
+
+            .platform {
+                width: 180px;
+            }
+        }
+
+
+        
+        @media (max-width: 375px) {
+
+            .game-title {
+                font-size: 22px;
+            }
+
+
+            .game-info {
+                flex-direction: column;
+
+                gap: 8px;
+            }
+
+
+            .top-row {
+                flex-direction: column;
+
+                gap: 15px;
+            }
+
+
+            .bottom-row {
+                flex-direction: column;
+            }
+
+
+            .platform {
+                width: 100%;
+            }
+
+
+            .game-area {
+                padding: 15px;
+            }
+
+
+            .panel {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+
+
+<body>
+
+    <header class="game-header">
+        <h1 class="game-title">
+            🎮 Flexbox Quest
+        </h1>
+
+        <div class="game-info">
+            <span class="stat">❤️ Lives: 5</span>
+            <span class="stat">🪙 Coins: 150</span>
+            <span class="stat">⭐ Level: 30</span>
+        </div>
+
+        <div class="header-actions">
+            <button>Pause</button>
+            <button>Menu</button>
+        </div>
+    </header>
+
+    <main>
+        <section class="game-area">
+            <h2>Adventure Zone</h2>
+            <div class="game-message">Collect the stars and complete your quest!</div>
+
+            <div class="top-row">
+                <div class="player">🧑 PLAYER</div>
+                <div class="star">⭐</div>
+            </div>
+
+            <div class="middle-row">
+                <div class="platform">PLATFORM</div>
+            </div>
+
+            <div class="bottom-row">
+                <div class="platform">PLATFORM</div>
+                <div class="platform">PLATFORM</div>
+            </div>
+        </section>
+
+        <section class="game-panels">
+            <div class="panel">
+                <h2>🎮 Controls</h2>
+                <div class="controls-content">
+                    <div class="control-row">
+                        <button class="control-button">↑</button>
+                    </div>
+                    <div class="control-row">
+                        <button class="control-button">←</button>
+                        <button class="control-button">↓</button>
+                        <button class="control-button">→</button>
+                    </div>
+                    <button class="jump-button">JUMP</button>
+                </div>
+            </div>
+
+            <div class="panel">
+                <h2>🎒 Inventory</h2>
+                <div class="inventory-items">
+                    <div class="item">⚔️ Sword</div>
+                    <div class="item">🛡️ Shield</div>
+                    <div class="item">🧪 Potion</div>
+                    <div class="item">🗝️ Key</div>
+                </div>
+            </div>
+
+            <div class="panel">
+                <h2>📜 Quest</h2>
+                <div class="quest-list">
+                    <div class="quest-item">
+                        <span>Collect 3 Stars</span>
+                        <span class="progress">3 / 3</span>
+                    </div>
+                    <div class="quest-item">
+                        <span>Find the Golden Key</span>
+                        <span class="progress">1 / 1</span>
+                    </div>
+                    <div class="quest-item">
+                        <span>Reach the Platform</span>
+                        <span class="progress">1 / 1</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="display-demo">
+            <h3>CSS Display Examples</h3>
+            <div class="demo-block">display: block</div>
+            <span class="demo-inline">display: inline</span>
+            <span class="demo-inline">another inline element</span>
+            <br><br>
+            <div class="demo-inline-block">display: inline-block</div>
+            <div class="demo-flex">
+                <span>Flex Item 1</span>
+                <span>Flex Item 2</span>
+                <span>Flex Item 3</span>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        🏁 Flexbox Quest | Built using HTML + CSS + Flexbox
+    </footer>
+
+</body>
+</html>
